@@ -2,30 +2,31 @@ package yarmark.scrabble;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ScrabbleDictionary {
+
+	private ArrayList<String> dictionary;
+
 	public ScrabbleDictionary() {
-	}
-
-	public boolean contains(String word) {
-		File dictionary = new File("US.dic");
-		Scanner readFile;
+		File file = new File("US.dic");
 		try {
-			readFile = new Scanner(dictionary);
 
+			Scanner readFile = new Scanner(file);
+			dictionary = new ArrayList<String>();
 			while (readFile.hasNext()) {
-				if (readFile.next().equalsIgnoreCase(word)) {
-					readFile.close();
-					return true;
-				}
+				dictionary.add(readFile.next());
 			}
 			readFile.close();
-			return false;
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+	}
+
+	public boolean contains(String word) {
+		return (this.dictionary.contains(word.toLowerCase()));
 	}
 }

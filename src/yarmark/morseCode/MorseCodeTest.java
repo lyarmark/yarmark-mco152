@@ -9,13 +9,13 @@ public class MorseCodeTest {
 	MorseCode mc = new MorseCode();
 
 	@Test
-	public void testToText() {
-		String decoded = mc.toText("-.-. .-   -... -..");
+	public void testDecode() {
+		String decoded = mc.decode("-.-. .-   -... -..");
 		Assert.assertEquals("CA BD ", decoded);
 	}
 
-	public void testToMorse() throws NotFoundException {
-		String encoded = mc.toMorse("AB CD");
+	public void testEncode() throws NotFoundException {
+		String encoded = mc.encode("AB CD");
 		Assert.assertEquals(".- -...   -.-. -..", encoded);
 	}
 }

@@ -4,7 +4,7 @@ public class MorseCode {
 	public MorseCode() {
 	}
 
-	public String toMorse(String message) throws NotFoundException {
+	public String encode(String message) throws NotFoundException {
 		if (!message.matches("[\\s\\dA-Za-z]*")) {
 			throw new NotFoundException();
 			// some of the characters you entered cannot be translated in the
@@ -18,10 +18,10 @@ public class MorseCode {
 			}
 			encoded.append("  ");
 		}
-		return encoded.toString();
+		return encoded.toString().trim();
 	}
 
-	public String toText(String code) {
+	public String decode(String code) {
 		String[] splitCode = code.split("   ");
 		StringBuilder decoded = new StringBuilder();
 		for (int h = 0; h < splitCode.length; h++) {
@@ -31,12 +31,11 @@ public class MorseCode {
 			}
 			decoded.append(" ");
 		}
-		return decoded.toString();
+		return decoded.toString().trim();
 	}
 
 	public String findEncode(char c) {
 		return MorseCodeTable.valueOf(String.valueOf(c)).getName();
-
 	}
 
 	public String findDecode(String s) {
