@@ -11,7 +11,7 @@ public class MorseCodeTest {
 	@Test
 	public void testDecode() {
 		String decoded = mc.decode("-.-. .-   -... -..");
-		Assert.assertEquals("CA BD ", decoded);
+		Assert.assertEquals("CA BD", decoded);
 	}
 
 	public void testEncode() throws NotFoundException {

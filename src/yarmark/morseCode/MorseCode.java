@@ -1,8 +1,23 @@
 package yarmark.morseCode;
 
+import java.util.HashMap;
+
 public class MorseCode {
+
+	private HashMap<String, String> mcMap = new HashMap<String, String>();
+
 	public MorseCode() {
+
+		// adds
+		for (MorseCodeTable c : MorseCodeTable.values()) {
+			//add morse, letter
+			mcMap.put(c.getName(), c.toString());
+			//add letter, morse
+			mcMap.put(c.toString(), c.getName());
+		}
 	}
+	
+	
 
 	public String encode(String message) throws NotFoundException {
 		if (!message.matches("[\\s\\dA-Za-z]*")) {
