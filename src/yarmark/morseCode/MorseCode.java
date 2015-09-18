@@ -10,14 +10,12 @@ public class MorseCode {
 
 		// adds
 		for (MorseCodeTable c : MorseCodeTable.values()) {
-			//add morse, letter
+			// add morse, letter
 			mcMap.put(c.getName(), c.toString());
-			//add letter, morse
+			// add letter, morse
 			mcMap.put(c.toString(), c.getName());
 		}
 	}
-	
-	
 
 	public String encode(String message) throws NotFoundException {
 		if (!message.matches("[\\s\\dA-Za-z]*")) {
@@ -50,16 +48,20 @@ public class MorseCode {
 	}
 
 	public String findEncode(char c) {
-		return MorseCodeTable.valueOf(String.valueOf(c)).getName();
+		return this.mcMap.get(String.valueOf(c));
+		// return MorseCodeTable.valueOf(String.valueOf(c)).getName();
 	}
 
 	public String findDecode(String s) {
-		for (MorseCodeTable code : MorseCodeTable.values()) {
+		return mcMap.get(s);
+		/*
+			for (MorseCodeTable code : MorseCodeTable.values()) {
 			if (code.getName().equals(s)) {
 				return code.toString();
 			}
 		}
 		// couldn't find match
 		return null;
+		*/
 	}
 }
