@@ -1,10 +1,11 @@
 package yarmark.anagrams;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class MostAnagrams {
 	public static void main(String[] args) {
@@ -12,14 +13,19 @@ public class MostAnagrams {
 		File file = new File("US.dic");
 
 		try {
-			Scanner readFile = new Scanner(file);
+
+			//Scanner readFile = new Scanner(file);
+			BufferedReader read = new BufferedReader(new FileReader("US.dic"));
 
 			// hashmap contains an alphabetized char array as the primary key
 			// and an ArrayList <String> to hold all the associated anagrams
 			HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 			String most = "";
-			while (readFile.hasNext()) {
-				String s = readFile.next();
+			//while (readFile.hasNext()) {
+
+			String s;
+
+			while ((s = read.readLine()) != null) {
 
 				// sort the chars of the string alphabetically
 				/*
@@ -59,12 +65,12 @@ public class MostAnagrams {
 					map.put(key, strings);
 				}
 			}
-			readFile.close();
+			read.close();
 
 			System.out.println(map.get(most).size() + " words");
 			System.out.println(map.get(most));
 
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

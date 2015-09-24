@@ -1,30 +1,34 @@
 package yarmark.scrabble;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class ScrabbleDictionary {
 
 	// private ArrayList<String> dictionary;
-	private HashSet dictionary = new HashSet<String>();
+	private HashSet <String> dictionary = new HashSet<String>();
 
 	public ScrabbleDictionary() {
-		File file = new File("US.dic");
 		try {
 
-			Scanner readFile = new Scanner(file);
-
+			//Scanner readFile = new Scanner(file);
+			BufferedReader read = new BufferedReader(new FileReader("US.dic"));
+			
 			// dictionary = new ArrayList<String>();
 			// { dictionary.add(readFile.next());
+			String s;
 
-			while (readFile.hasNext()) {
-				dictionary.add(readFile.next());
+			while ((s = read.readLine()) != null) {
+				dictionary.add(s);
 			}
-			readFile.close();
+			read.close();
 
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

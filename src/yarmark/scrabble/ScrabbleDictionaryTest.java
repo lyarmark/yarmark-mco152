@@ -1,7 +1,7 @@
 package yarmark.scrabble;
 
+import org.junit.Assert;
 import org.junit.Test;
-import junit.framework.Assert;
 
 public class ScrabbleDictionaryTest {
 
@@ -9,13 +9,13 @@ public class ScrabbleDictionaryTest {
 	public void testScrabbleDictionary() {
 		ScrabbleDictionary sd = new ScrabbleDictionary();
 		boolean test = sd.contains("Peach");
-		Assert.assertEquals(true, test);
+		Assert.assertTrue(test);
 	}
 
 	@Test
 	public void testScrabbleDictionary1() {
 		ScrabbleDictionary sd = new ScrabbleDictionary();
 		boolean test = sd.contains("plum");
-		Assert.assertEquals(true, test);
+		Assert.assertTrue(test);
 	}
 }

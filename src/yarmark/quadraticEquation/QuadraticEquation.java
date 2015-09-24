@@ -6,7 +6,10 @@ public class QuadraticEquation {
 	private double b;
 	private double c;
 
-	public QuadraticEquation(double a, double b, double c) {
+	public QuadraticEquation(double a, double b, double c) throws InvalidDataException {
+		if (a == 0) {
+			throw new InvalidDataException();
+		}
 		this.a = a;
 		this.b = b;
 		this.c = c;
@@ -18,23 +21,17 @@ public class QuadraticEquation {
 	// if b == 0, the answers to getPos() and getNeg() will be opposite
 	// inverses.
 
-	public double getPositiveX() throws NoAnswerException, InvalidDataException {
-		if (a == 0) {
-			throw new InvalidDataException();
-		}
-		if (((b * b) - 4 * a * c) < 0) {
+	public Double getNegativeX() throws NoAnswerException {
+		if (this.b * this.b - 4 * this.a * this.c < 0) {
 			throw new NoAnswerException();
 		}
-		return (-this.b + (Math.sqrt((b * b) - 4 * a * c))) / (2 * a);
+		return (-this.b - Math.sqrt(this.b * this.b - 4 * this.a * this.c)) / (2 * this.a);
 	}
 
-	public Double getNegativeX() throws NoAnswerException, InvalidDataException {
-		if (a == 0) {
-			throw new InvalidDataException();
-		}
-		if (((b * b) - 4 * a * c) < 0) {
+	public double getPositiveX() throws NoAnswerException {
+		if (this.b * this.b - 4 * this.a * this.c < 0) {
 			throw new NoAnswerException();
 		}
-		return (-this.b - (Math.sqrt((b * b) - 4 * a * c))) / (2 * a);
+		return (-this.b + Math.sqrt(this.b * this.b - 4 * this.a * this.c)) / (2 * this.a);
 	}
 }

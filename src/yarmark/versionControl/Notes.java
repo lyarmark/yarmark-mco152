@@ -41,8 +41,25 @@ public class Notes {
  * if git asks who you are, put your name/email
  * git gives the two command options for both choices
  * 
+ * copy/paste
+ * right click and select mark
+ * select the file name
+ * git add and paste what you just selected
+ * then commit
+ * 
+ * edit files
+ * git add
+ * git commit saves edited files locally
+ * to save edited files on github:
+ * "git push -u origin master"
+ * 
+ * to download latest code:
+ * in yarmark-mco152
+ * git pull
+ * 
  * MY WORKSPACE IS: E:\MCO 152 Computer Methodology
  * MY PROJECT IS: E:\MCO 152 Computer Methodology\programs
- * 
+ * git user name: lyarmark
+ * git password: same as touro portal
  */
 }
