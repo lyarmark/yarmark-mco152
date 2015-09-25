@@ -1,7 +1,6 @@
 package yarmark.morseCode;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MorseCodeTest {
@@ -10,12 +9,12 @@ public class MorseCodeTest {
 
 	@Test
 	public void testDecode() {
-		String decoded = mc.decode("-.-. .-   -... -..");
+		String decoded = this.mc.decode("-.-. .-   -... -..");
 		Assert.assertEquals("CA BD", decoded);
 	}
 
 	public void testEncode() throws NotFoundException {
-		String encoded = mc.encode("AB CD");
+		String encoded = this.mc.encode("AB CD");
 		Assert.assertEquals(".- -...   -.-. -..", encoded);
 	}
 }
