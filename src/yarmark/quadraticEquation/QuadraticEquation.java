@@ -28,7 +28,7 @@ public class QuadraticEquation {
 		return (-this.b - Math.sqrt(this.b * this.b - 4 * this.a * this.c)) / (2 * this.a);
 	}
 
-	public double getPositiveX() throws NoAnswerException {
+	public Double getPositiveX() throws NoAnswerException {
 		if (this.b * this.b - 4 * this.a * this.c < 0) {
 			throw new NoAnswerException();
 		}
