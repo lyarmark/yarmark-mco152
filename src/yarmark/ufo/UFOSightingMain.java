@@ -14,12 +14,13 @@ public class UFOSightingMain {
 
 		Gson gson = new Gson();
 
-		//this will return a list of ufo sightings
-		UFOSightingList list =  gson.fromJson(in,  UFOSightingList.class);
+		// this will return a list of ufo sightings
+		UFOSightingList list = gson.fromJson(in, UFOSightingList.class);
 
-		System.out.println(list.size());	//test
+		System.out.println(list.size()); // test
 
 		in.close();
+
 	}
 
 }
