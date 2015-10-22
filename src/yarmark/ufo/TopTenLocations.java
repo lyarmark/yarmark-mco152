@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -41,18 +42,15 @@ public class TopTenLocations {
 						break;
 					}
 
-					// check for doubles so there are no duplicates in the array
-					if (topTen[i].equalsIgnoreCase(location)) {
-						break;
-					}
 					int arrayCount = map.get(topTen[i]);
 					int mapCount = map.get(location);
 
 					if (arrayCount > mapCount) {
 						continue;
 					} else if (arrayCount < mapCount) {
-						if (i == 0 || (map.get(topTen[i - 1]) > mapCount)) {
-							for (int j = topTen.length - 1; j > i + 1; j--) {
+						if (i == 0 || map.get(topTen[i - 1]) > mapCount
+								&& !(topTen[i - 1].equalsIgnoreCase(location))) {
+							for (int j = topTen.length - 1; j > i; j--) {
 								topTen[j] = topTen[j - 1];
 							}
 							topTen[i] = location;
@@ -71,5 +69,10 @@ public class TopTenLocations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public int sort(HashMap<String, Integer> map, String location,
+			String[] topTen, int i) {
+		return map.get(topTen[i]).compareTo(map.get(location));
 	}
 }
