@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -22,7 +23,7 @@ public class TopTenLocations {
 			in.close();
 
 			HashMap<String, Integer> map = new HashMap<String, Integer>();
-			String[] topTen = new String[10];
+			ArrayList<String> keys;
 
 			// put the locations into a hashmap
 			// with location as the key and a counter
@@ -34,33 +35,18 @@ public class TopTenLocations {
 					map.put(location, 1);
 				}
 
-				// compare the current count to the sorted array
-				for (int i = topTen.length - 1; i >= 0; i--) {
-					// fill in the array intially
-					if (topTen[i] == null) {
-						topTen[i] = location;
-						break;
-					}
+				keys = new ArrayList<String>(map.keySet());
+				keys.sort(new Comparator<String>() {
 
-					int arrayCount = map.get(topTen[i]);
-					int mapCount = map.get(location);
-
-					if (arrayCount > mapCount) {
-						continue;
-					} else if (arrayCount < mapCount) {
-						if (i == 0 || map.get(topTen[i - 1]) > mapCount
-								&& !(topTen[i - 1].equalsIgnoreCase(location))) {
-							for (int j = topTen.length - 1; j > i; j--) {
-								topTen[j] = topTen[j - 1];
-							}
-							topTen[i] = location;
-						}
+					@Override
+					public int compare(String a, String b) {
+						return map.get(a).compareTo(map.get(b));
 					}
-				}
+				});
 			}
 
-			for (String s : topTen) {
-				System.out.println(s + " " + map.get(s));
+			for (int i = 0; i <= 10; i++) {
+				System.out.print(keys.get(i) + ": " + map.get(keys.get(i)));
 			}
 
 		} catch (FileNotFoundException e) {
@@ -69,10 +55,5 @@ public class TopTenLocations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public int sort(HashMap<String, Integer> map, String location,
-			String[] topTen, int i) {
-		return map.get(topTen[i]).compareTo(map.get(location));
 	}
 }
