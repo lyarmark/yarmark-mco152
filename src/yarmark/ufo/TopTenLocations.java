@@ -35,18 +35,27 @@ public class TopTenLocations {
 					map.put(location, 1);
 				}
 
-				keys = new ArrayList<String>(map.keySet());
-				keys.sort(new Comparator<String>() {
 
-					@Override
-					public int compare(String a, String b) {
-						return map.get(a).compareTo(map.get(b));
-					}
-				});
 			}
+			keys = new ArrayList<String>(map.keySet());
+			keys.sort(new Comparator<String>() {
 
-			for (int i = 0; i <= 10; i++) {
-				System.out.print(keys.get(i) + ": " + map.get(keys.get(i)));
+				@Override
+				public int compare(String a, String b) {
+					if (map.get(a) > map.get(b)) {
+						return -1;
+					}
+					else if (map.get(a) < map.get(b)) {
+						return 1;
+					}
+					else {
+						return 0;
+					}
+					//					return map.get(a).compareTo(map.get(b));
+				}
+			});
+			for (int i = 0; i < 10; i++) {
+				System.out.println(keys.get(i) + ": " + map.get(keys.get(i)));
 			}
 
 		} catch (FileNotFoundException e) {
