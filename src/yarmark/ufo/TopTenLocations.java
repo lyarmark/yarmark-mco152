@@ -23,7 +23,7 @@ public class TopTenLocations {
 			in.close();
 
 			HashMap<String, Integer> map = new HashMap<String, Integer>();
-			ArrayList<String> keys;
+			ArrayList<String> keys = null;
 
 			// put the locations into a hashmap
 			// with location as the key and a counter
