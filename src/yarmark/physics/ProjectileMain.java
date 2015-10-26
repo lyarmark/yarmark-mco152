@@ -3,7 +3,7 @@ package yarmark.physics;
 public class ProjectileMain {
 	public static void main(String[] args) {
 
-		Projectile test = new Projectile(1, 2, 3);
+		Projectile test = new Projectile(31, 20, 2.7);
 
 		for (int counter = 0; counter <= 10; counter++) {
 			test.setTime(counter);
