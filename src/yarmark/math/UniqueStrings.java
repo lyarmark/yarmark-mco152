@@ -14,7 +14,7 @@ public class UniqueStrings {
 		 * }
 		 */
 
-		HashSet set = new HashSet<String>();
+		HashSet<String> set = new HashSet<String>();
 		for (String s : array) {
 			if (!set.contains(s)) {
 				System.out.println(s);

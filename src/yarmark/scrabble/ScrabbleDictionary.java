@@ -1,24 +1,39 @@
 package yarmark.scrabble;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class ScrabbleDictionary {
 
 	// private ArrayList<String> dictionary;
-	private HashSet <String> dictionary = new HashSet<String>();
+	private HashSet<String> dictionary = new HashSet<String>();
 
-	public ScrabbleDictionary() {
+	// have the whole program use this one instance
+	// public final static ScrabbleDictionary singleton = new
+	// ScrabbleDictionary();
+	// depending of how you wrote ur program, this may throw an IOException
+	// so make it private and make a getter
+
+	private static ScrabbleDictionary singleton;
+
+	public static ScrabbleDictionary getInstance() {
+		if (singleton == null) {
+			singleton = new ScrabbleDictionary();
+		}
+		return singleton;
+	}
+
+	// making the constructor private only allows the instantiation of one
+	// instance,
+	// with the getInstance() method
+	private ScrabbleDictionary() {
 		try {
 
-			//Scanner readFile = new Scanner(file);
+			// Scanner readFile = new Scanner(file);
 			BufferedReader read = new BufferedReader(new FileReader("US.dic"));
-			
+
 			// dictionary = new ArrayList<String>();
 			// { dictionary.add(readFile.next());
 			String s;

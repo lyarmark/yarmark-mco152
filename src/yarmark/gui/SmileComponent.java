@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
+@SuppressWarnings("serial")
 public class SmileComponent extends JComponent {
 
 	// overload- have many methods with same name and different parameters
@@ -33,7 +34,11 @@ public class SmileComponent extends JComponent {
 		g.setColor(Color.GREEN);
 		g.fillOval(400, 325, 50, 50);
 		g.setColor(Color.RED);
-		g.fillArc(350, 450, 100, 50, 900, 180);
+		g.drawArc(350, 450, 100, 50, 900, 180);
+		g.setColor(Color.PINK);
+		g.fillRect(285, 225, 230, 50);
+		g.setColor(Color.PINK);
+		g.fillRect(300, 185, 200, 40);
 
 		// set 100 pixel padding around the circle
 		// it will resize on window resize

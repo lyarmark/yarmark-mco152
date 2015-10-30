@@ -6,6 +6,7 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JComponent;
 
+@SuppressWarnings("serial")
 public class ProjectileComponent extends JComponent {
 	private int angle = 31;
 	private int velocity = 20;

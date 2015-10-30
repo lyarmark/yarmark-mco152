@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class JFrameDemo extends JFrame {
 
 	private JTextField textField1;

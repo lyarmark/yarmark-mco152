@@ -10,10 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import yarmark.quadraticEquation.InvalidDataException;
-import yarmark.quadraticEquation.NoAnswerException;
-import yarmark.quadraticEquation.QuadraticEquation;
-
+@SuppressWarnings("serial")
 public class ProjectileGui extends JFrame {
 
 	private JLabel angle;

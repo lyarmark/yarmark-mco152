@@ -5,6 +5,7 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class ProjectileJFrame extends JFrame {
 
 	public ProjectileJFrame() {

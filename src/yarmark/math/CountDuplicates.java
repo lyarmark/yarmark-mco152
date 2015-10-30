@@ -1,7 +1,6 @@
 package yarmark.math;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class CountDuplicates {
 

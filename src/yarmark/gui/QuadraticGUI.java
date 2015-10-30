@@ -14,6 +14,7 @@ import yarmark.quadraticEquation.InvalidDataException;
 import yarmark.quadraticEquation.NoAnswerException;
 import yarmark.quadraticEquation.QuadraticEquation;
 
+@SuppressWarnings("serial")
 public class QuadraticGUI extends JFrame {
 
 	private JLabel a;

@@ -7,8 +7,8 @@ public class ShowDuplicates {
 
 		String array[] = new String[] { "A", "B", "B", "B", "C" };
 
-		HashSet set = new HashSet<String>();
-		HashSet duplicates = new HashSet<String>();
+		HashSet<String> set = new HashSet<String>();
+		HashSet<String> duplicates = new HashSet<String>();
 
 		for (String s : array) {
 			if (set.contains(s)) {
