@@ -17,17 +17,17 @@ public class QuadraticEquationTest {
 			qe.getNegativeX();
 			Assert.fail("did not throw exception");
 		} catch (NoAnswerException e) {
-			//expected
+			// expected
 		}
 	}
 
-	public void testGetNegativeYThrowsException() throws InvalidDataException {
+	public void testGetPositveXThrowsException() throws InvalidDataException {
 		QuadraticEquation qe = new QuadraticEquation(2, 0, 2);
 		try {
 			qe.getPositiveX();
 			Assert.fail("did not throw exception");
 		} catch (NoAnswerException e) {
-			//expected
+			// expected
 		}
 	}
 
@@ -43,8 +43,7 @@ public class QuadraticEquationTest {
 			QuadraticEquation qe = new QuadraticEquation(0, 0, 0);
 			Assert.fail("did not throw exception");
 		} catch (InvalidDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// expected
 		}
 	}
 }
