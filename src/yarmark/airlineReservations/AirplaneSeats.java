@@ -34,6 +34,7 @@ public class AirplaneSeats {
 
 		for (int row = 1; row <= rows; row++) {
 			for (int column = 1; column <= columns; column++) {
+				//why is the seat 1A instead of A1?
 				map.put(new Seat(this.alphabet.get(column), row), false);
 
 			}
