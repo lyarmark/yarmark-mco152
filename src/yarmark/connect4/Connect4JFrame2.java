@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 import yarmark.gui.Connect4Component2;
 
-public class Connect4JFrame extends JFrame {
+public class Connect4JFrame2 extends JFrame {
 
 	private JButton button1;
 	private JButton button2;
@@ -21,9 +21,9 @@ public class Connect4JFrame extends JFrame {
 
 	Game game;
 
-	Connect4Component2[][] components;
+	Connect4Component2 c;
 
-	public Connect4JFrame() {
+	public Connect4JFrame2() {
 		setTitle("Connect 4");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,12 +49,10 @@ public class Connect4JFrame extends JFrame {
 		add(button7);
 
 		game = new Game();
-		components = new Connect4Component2[layout.getRows()][layout.getColumns()];
 
 		for (int i = 0; i < layout.getRows(); i++) {
 			for (int j = 0; j < layout.getColumns(); j++) {
-				components[i][j] = new Connect4Component2();
-				add(components[i][j]);
+				add(new Connect4Component2());
 			}
 		}
 
@@ -66,23 +64,20 @@ public class Connect4JFrame extends JFrame {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
 			game.insertPiece(1);
-
 		} else if (e.getSource() == button2) {
+
 			int location = game.insertPiece(2);
-			components[2][location].setColor(game.getCurrentPlayerColor());
+			// components[2][location].paintComponent(this.getGraphics(),
+			// game.getCurrentPlayerColor());
 
 		} else if (e.getSource() == button3) {
 			game.insertPiece(3);
-
 		} else if (e.getSource() == button4) {
 			game.insertPiece(4);
-
 		} else if (e.getSource() == button5) {
 			game.insertPiece(5);
-
 		} else if (e.getSource() == button6) {
 			game.insertPiece(6);
-
 		} else if (e.getSource() == button7) {
 			game.insertPiece(7);
 		}

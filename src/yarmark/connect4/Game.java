@@ -18,18 +18,18 @@ public class Game {
 
 	public void playGame() {
 		while (!winner()) {
-
+			break;
 		}
 
 	}
 
-	public void insertPiece(int column) {
+	public int insertPiece(int column) {
 		int column2 = column - 1;
 		for (int row = board.length; row >= 0; row++) {
 			if (board[board.length][column2] != 0) {
 				board[row][column2] = this.currentPlayer.getNumber();
 				this.currentPlayer = takeTurns(this.currentPlayer);
-				break;
+				return column2;
 			}
 		}
 		// HOW TO TEST FOR FULL COLUMN IF THE METHOD DOESN'T RETURN ANTYHING

@@ -28,10 +28,15 @@ public class Connect4Component extends JComponent {
 
 	public void paint(Graphics g, Color color) {
 		super.paint(g);
-
 		g.setColor(color);
 		g.fillOval(this.x, this.y, this.width, this.height);
 
+	}
+
+	protected void paintComponent(Graphics g, Color c) {
+		super.paintComponent(g);
+		g.setColor(c);
+		g.drawOval(this.x, this.y, this.width, this.height);
 	}
 
 }
