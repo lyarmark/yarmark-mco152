@@ -7,36 +7,26 @@ import javax.swing.JComponent;
 
 public class Connect4Component extends JComponent {
 
-	private int x;
-	private int y;
-	private int width;
-	private int height;
 	private Color color;
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Connect4Component(Color color) {
-		this.x = 5;
-		this.y = 0;
-		this.width = 80;
-		this.height = 80;
-		this.color = color;
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+
+		g.setColor(Color.white);
+		g.fillOval(0, 0, 80, 80);
 	}
 
 	public void paint(Graphics g, Color color) {
-		super.paint(g);
-		g.setColor(color);
-		g.fillOval(this.x, this.y, this.width, this.height);
-
+		this.paint(getGraphics());
 	}
 
-	protected void paintComponent(Graphics g, Color c) {
-		super.paintComponent(g);
-		g.setColor(c);
-		g.drawOval(this.x, this.y, this.width, this.height);
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }

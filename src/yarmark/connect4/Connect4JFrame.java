@@ -3,13 +3,12 @@ package yarmark.connect4;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import yarmark.gui.Connect4Component2;
-
-public class Connect4JFrame extends JFrame {
+public class Connect4JFrame extends JFrame implements ActionListener {
 
 	private JButton button1;
 	private JButton button2;
@@ -21,7 +20,7 @@ public class Connect4JFrame extends JFrame {
 
 	Game game;
 
-	Connect4Component2[][] components;
+	Connect4Component[][] components;
 
 	public Connect4JFrame() {
 		setTitle("Connect 4");
@@ -41,19 +40,27 @@ public class Connect4JFrame extends JFrame {
 		this.button7 = new JButton("Column 7");
 
 		add(button1);
+		button1.addActionListener(this);
 		add(button2);
+		button2.addActionListener(this);
 		add(button3);
+		button3.addActionListener(this);
 		add(button4);
+		button4.addActionListener(this);
 		add(button5);
+		button5.addActionListener(this);
 		add(button6);
+		button6.addActionListener(this);
 		add(button7);
+		button7.addActionListener(this);
 
+		this.button1.addActionListener(this);
 		game = new Game();
-		components = new Connect4Component2[layout.getRows()][layout.getColumns()];
+		components = new Connect4Component[layout.getRows()][layout.getColumns()];
 
 		for (int i = 0; i < layout.getRows(); i++) {
 			for (int j = 0; j < layout.getColumns(); j++) {
-				components[i][j] = new Connect4Component2();
+				components[i][j] = new Connect4Component();
 				add(components[i][j]);
 			}
 		}
@@ -68,9 +75,11 @@ public class Connect4JFrame extends JFrame {
 			game.insertPiece(1);
 
 		} else if (e.getSource() == button2) {
+			System.out.println("beginning of click");
 			int location = game.insertPiece(2);
 			components[2][location].setColor(game.getCurrentPlayerColor());
-
+			components[2][location].repaint();
+			System.out.println("end of click");
 		} else if (e.getSource() == button3) {
 			game.insertPiece(3);
 

@@ -25,12 +25,14 @@ public class Game {
 
 	public int insertPiece(int column) {
 		int column2 = column - 1;
-		for (int row = board.length; row >= 0; row++) {
-			if (board[board.length][column2] != 0) {
+		for (int row = board[column2].length - 1; row >= 0; row++) {
+			int number = board[row][column2];
+			if (board[row][column2] == 0) {
 				board[row][column2] = this.currentPlayer.getNumber();
 				this.currentPlayer = takeTurns(this.currentPlayer);
 				return column2;
 			}
+			continue;
 		}
 		// HOW TO TEST FOR FULL COLUMN IF THE METHOD DOESN'T RETURN ANTYHING
 		throw new ColumnFullException();

@@ -1,4 +1,3 @@
-
 package yarmark.gui;
 
 import java.awt.Container;
@@ -66,8 +65,8 @@ public class JFrameDemo extends JFrame {
 		// which must be implemented by a class that implements the interface
 
 		button1.addActionListener(new ActionListener() {
-			//this is an anonymous class that exists only over here
-			//it will have a method that will happen when the button is clicked
+			// this is an anonymous class that exists only over here
+			// it will have a method that will happen when the button is clicked
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("WOW! you have clicked the button!");
