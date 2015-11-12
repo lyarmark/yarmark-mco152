@@ -5,6 +5,5 @@ public class PlayGame {
 
 		Connect4JFrame frame = new Connect4JFrame();
 		frame.setVisible(true);
-
 	}
 }

@@ -8,6 +8,11 @@ import javax.swing.JComponent;
 public class Connect4Component extends JComponent {
 
 	private Color color;
+
+	public Connect4Component(Color color) {
+		this.color = color;
+	}
+
 	/**
 	 * 
 	 */
@@ -17,16 +22,12 @@ public class Connect4Component extends JComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		g.setColor(Color.white);
+		g.setColor(this.color);
 		g.fillOval(0, 0, 80, 80);
-	}
-
-	public void paint(Graphics g, Color color) {
-		this.paint(getGraphics());
 	}
 
 	public void setColor(Color color) {
 		this.color = color;
+		// repaint();
 	}
-
 }

@@ -27,6 +27,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		// parameters start from 0. 8 rows, 7 columns
 		GridLayout layout = new GridLayout(7, 6);
 
 		setLayout(layout);
@@ -54,13 +55,19 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 		add(button7);
 		button7.addActionListener(this);
 
-		this.button1.addActionListener(this);
 		game = new Game();
-		components = new Connect4Component[layout.getRows()][layout.getColumns()];
 
-		for (int i = 0; i < layout.getRows(); i++) {
-			for (int j = 0; j < layout.getColumns(); j++) {
-				components[i][j] = new Connect4Component();
+		// getRows and getColumns return count from 0
+		// need to increment to have correct size array
+		int row = layout.getRows();
+		int col = layout.getColumns();
+
+		// rows is 7, columns is 6. we want [6][7]
+		components = new Connect4Component[layout.getRows() - 1][layout.getColumns() + 1];
+
+		for (int i = 0; i < components.length; i++) {
+			for (int j = 0; j < components[i].length; j++) {
+				components[i][j] = new Connect4Component(Color.white);
 				add(components[i][j]);
 			}
 		}
@@ -72,28 +79,95 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button1) {
-			game.insertPiece(1);
+			try {
+
+				int location = game.insertPiece(0);
+
+				components[location][0].setColor(game.getCurrentPlayerColor());
+				components[location][0].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 
 		} else if (e.getSource() == button2) {
-			System.out.println("beginning of click");
-			int location = game.insertPiece(2);
-			components[2][location].setColor(game.getCurrentPlayerColor());
-			components[2][location].repaint();
-			System.out.println("end of click");
+			try {
+				int location = game.insertPiece(1);
+
+				components[location][1].setColor(game.getCurrentPlayerColor());
+				components[location][1].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 		} else if (e.getSource() == button3) {
-			game.insertPiece(3);
+			try {
+				int location = game.insertPiece(2);
+
+				components[location][2].setColor(game.getCurrentPlayerColor());
+				components[location][2].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 
 		} else if (e.getSource() == button4) {
-			game.insertPiece(4);
+			try {
+				int location = game.insertPiece(3);
+
+				components[location][3].setColor(game.getCurrentPlayerColor());
+				components[location][3].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 
 		} else if (e.getSource() == button5) {
-			game.insertPiece(5);
+			try {
+				int location = game.insertPiece(4);
+
+				components[location][4].setColor(game.getCurrentPlayerColor());
+				components[location][4].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 
 		} else if (e.getSource() == button6) {
-			game.insertPiece(6);
+			try {
+				int location = game.insertPiece(5);
+
+				components[location][5].setColor(game.getCurrentPlayerColor());
+				components[location][5].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 
 		} else if (e.getSource() == button7) {
-			game.insertPiece(7);
+			try {
+				int location = game.insertPiece(6);
+
+				components[location][6].setColor(game.getCurrentPlayerColor());
+				components[location][6].repaint();
+				game.setCurrentPlayer();
+
+			} catch (ColumnFullException e1) {
+				System.out.println(e1.toString());
+
+			}
 		}
 	}
 }

@@ -23,18 +23,14 @@ public class Game {
 
 	}
 
-	public int insertPiece(int column) {
-		int column2 = column - 1;
-		for (int row = board[column2].length - 1; row >= 0; row++) {
-			int number = board[row][column2];
-			if (board[row][column2] == 0) {
-				board[row][column2] = this.currentPlayer.getNumber();
-				this.currentPlayer = takeTurns(this.currentPlayer);
-				return column2;
+	public int insertPiece(int column) throws ColumnFullException {
+		for (int row = board.length - 1; row >= 0; row--) {
+			if (board[row][column] == 0) {
+				board[row][column] = this.currentPlayer.getNumber();
+				// offset by 1 because GUI array has buttons
+				return row;
 			}
-			continue;
 		}
-		// HOW TO TEST FOR FULL COLUMN IF THE METHOD DOESN'T RETURN ANTYHING
 		throw new ColumnFullException();
 	}
 
@@ -42,11 +38,11 @@ public class Game {
 		return this.currentPlayer.getColor();
 	}
 
-	private Player takeTurns(Player p) {
-		if (p.equals(this.player1)) {
-			return this.player2;
+	public void setCurrentPlayer() {
+		if (this.currentPlayer.equals(this.player1)) {
+			this.currentPlayer = this.player2;
 		} else {
-			return this.player1;
+			this.currentPlayer = this.player1;
 		}
 	}
 
