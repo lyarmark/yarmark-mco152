@@ -34,7 +34,6 @@ public class AirplaneSeats {
 
 		for (int row = 1; row <= rows; row++) {
 			for (int column = 1; column <= columns; column++) {
-				// why is the seat 1A instead of A1?
 				map.put(new Seat(this.alphabet.get(column), row), false);
 
 			}
@@ -55,13 +54,13 @@ public class AirplaneSeats {
 		Seat temp = new Seat(seatName.charAt(0), Integer.parseInt(String.valueOf(seatName.charAt(1))));
 
 		// out of bounds
-		if (map.get(temp) == false) {
-			map.put(temp, true);
+		if (!(map.containsKey(temp))) {
+			throw new SeatOutOfBoundsException();
 		}
 
 		// seat available
-		else if (!map.containsKey(temp)) {
-			throw new SeatOutOfBoundsException();
+		else if (map.get(temp) == false) {
+			map.put(temp, true);
 		}
 
 		// reserved
@@ -115,23 +114,23 @@ public class AirplaneSeats {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		for (int i = this.columns; i <= this.columns; i++) {
-			sb.append(map.get(i));
+		for (int i = 1; i <= this.columns; i++) {
+			sb.append(alphabet.get(i));
 		}
 
 		sb.append("\n");
 
 		for (int row = 1; row <= rows; row++) {
+			sb.append(row + " ");
 			for (int column = 1; column <= columns; column++) {
-				// change this
-				if (map.getValue() == false) {
+				Seat temp = new Seat(alphabet.get(column), row);
+				if (map.get(temp) == false) {
 					sb.append("o");
 				} else {
 					sb.append("#");
 				}
-				sb.append("\n");
-
 			}
+			sb.append("\n");
 		}
 		return sb.toString();
 	}
@@ -156,7 +155,7 @@ public class AirplaneSeats {
 			for (int col = 1; col <= this.columns; col++) {
 				Seat temp = new Seat(alphabet.get(col), row);
 
-				if (map.get(temp) != null) {
+				if (map.get(temp) != false) {
 					if ((this.columns - col) >= numberOfSeatsTogether) {
 						continue;
 					} else {
@@ -182,7 +181,7 @@ public class AirplaneSeats {
 	 */
 	public boolean isPlaneFull() {
 		for (Entry<Seat, Boolean> s : map.entrySet()) {
-			if (s.getValue() == null) {
+			if (s.getValue() == false) {
 				return false;
 			}
 		}

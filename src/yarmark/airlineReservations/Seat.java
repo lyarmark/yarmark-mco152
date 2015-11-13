@@ -8,25 +8,36 @@ public class Seat {
 		this.column = column;
 		this.row = row;
 	}
-	
+
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.row);
 		sb.append(this.column);
+		sb.append(this.row);
 		return sb.toString();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		//change this
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Seat other = (Seat) obj;
+		if (row != other.row)
+			return false;
+		if (column != other.column)
+			return false;
+		return true;
 	}
 
 	@Override
 	public int hashCode() {
-//change this
-		return super.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result;
+		result = prime * result;
+		return result;
 	}
-	
-	
 }

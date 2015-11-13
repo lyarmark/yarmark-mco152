@@ -23,7 +23,7 @@ public class AirplaneSeatsTest {
 		seats.reserveAll("A1", "B1", "C1", "D1");
 		seats.reserveAll("A2", "B2", "C2", "D2");
 		seats.reserveAll("A3", "B3", "C3", "D3");
-		Assert.assertEquals("  ABCD\n" + "1 ####\n" + "2 ####\n" + "3 ####\n", seats.toString());
+		Assert.assertEquals("ABCD\n" + "1 ####\n" + "2 ####\n" + "3 ####\n", seats.toString());
 	}
 
 	@Test
@@ -33,7 +33,7 @@ public class AirplaneSeatsTest {
 	public void testReserve() throws AlreadyReservedException, SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
 		seats.reserve("A1");
-		//Assert.fail("Test not implemented");
+		// Assert.fail("Test not implemented");
 	}
 
 	@Test
@@ -111,7 +111,6 @@ public class AirplaneSeatsTest {
 	 */
 	public void testReserveGroupOnPartiallyFilledPlane() throws NotEnoughSeatsException, AlreadyReservedException,
 			SeatOutOfBoundsException {
-		// Assert.fail("Test not implemented");
 		// test on 3, 4 plane where a1 is full
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
 		seats.reserve("A1");
