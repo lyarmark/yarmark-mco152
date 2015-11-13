@@ -5,8 +5,8 @@ public class Seat {
 	private char column;
 
 	public Seat(char column, int row) {
-		this.row = row;
 		this.column = column;
+		this.row = row;
 	}
 	
 	public String toString() {
@@ -15,4 +15,18 @@ public class Seat {
 		sb.append(this.column);
 		return sb.toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		//change this
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+//change this
+		return super.hashCode();
+	}
+	
+	
 }

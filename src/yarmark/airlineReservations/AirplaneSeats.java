@@ -34,7 +34,7 @@ public class AirplaneSeats {
 
 		for (int row = 1; row <= rows; row++) {
 			for (int column = 1; column <= columns; column++) {
-				//why is the seat 1A instead of A1?
+				// why is the seat 1A instead of A1?
 				map.put(new Seat(this.alphabet.get(column), row), false);
 
 			}
@@ -121,17 +121,16 @@ public class AirplaneSeats {
 
 		sb.append("\n");
 
-		for (Entry<Seat, Boolean> s : map.entrySet()) {
-
-			// new line every i seats
-			for (int i = 1; i < this.columns; i++) {
-
-				if (s.getValue() == false) {
+		for (int row = 1; row <= rows; row++) {
+			for (int column = 1; column <= columns; column++) {
+				// change this
+				if (map.getValue() == false) {
 					sb.append("o");
 				} else {
 					sb.append("#");
 				}
 				sb.append("\n");
+
 			}
 		}
 		return sb.toString();
