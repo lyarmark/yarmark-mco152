@@ -3,11 +3,8 @@ package yarmark.ups;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
-
-import yarmark.quadraticEquation.QuadraticEquation;
 
 public class UPSDatabaseTest {
 
@@ -46,20 +43,20 @@ public class UPSDatabaseTest {
 	 */
 	public void testUpdatePackageLocation() {
 		UPSDatabase ups = new UPSDatabase();
-		
+
 		Location location = new Location(10, 20);
 		Package pkg = new Package("123456");
 		ups.addPackageToLocation(location, pkg);
-		
+
 		Location location2 = new Location(20, 30);
-				ups.updatePackageLocation(pkg, location2);
-		
+		ups.updatePackageLocation(pkg, location2);
+
 		Set<Package> s = ups.getPackages(location2);
 		Assert.assertTrue(s.contains(pkg));
-		
+
 		Location newLocation = ups.getLocation(pkg);
 		Assert.assertEquals(newLocation, ups.getLocation(pkg));
-		
+
 		Assert.assertTrue(!ups.getPackages(location).contains(pkg));
 	}
 
@@ -72,7 +69,7 @@ public class UPSDatabaseTest {
 
 		UPSDatabase ups = new UPSDatabase();
 		Location location = new Location(10, 20);
-		
+
 		HashSet<Package> empty = new HashSet<Package>();
 		Assert.assertEquals(empty, ups.getPackages(location));
 	}
@@ -85,7 +82,7 @@ public class UPSDatabaseTest {
 		UPSDatabase ups = new UPSDatabase();
 		Package pkg = new Package("123456");
 		Assert.assertEquals(null, ups.getLocation(pkg));
-		
+
 	}
 
 }

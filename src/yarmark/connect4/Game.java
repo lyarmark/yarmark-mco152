@@ -6,32 +6,27 @@ public class Game {
 
 	private Player player1;
 	private Player player2;
-	private int[][] board;
 	private Player currentPlayer;
+	private Board board;
 
 	public Game() {
 		this.player1 = new Player(Color.red, 1);
 		this.player2 = new Player(Color.black, 2);
-		board = new int[6][7];
 		this.currentPlayer = this.player1;
-	}
-
-	public void playGame() {
-		while (!winner()) {
-			break;
-		}
-
+		this.board = new Board(6, 7);
 	}
 
 	public int insertPiece(int column) throws ColumnFullException {
-		for (int row = board.length - 1; row >= 0; row--) {
-			if (board[row][column] == 0) {
-				board[row][column] = this.currentPlayer.getNumber();
-				// offset by 1 because GUI array has buttons
-				return row;
-			}
+		return this.board.insertPiece(column, this.currentPlayer.getNumber());
+	}
+
+	public boolean gameOver(int row, int column) {
+		boolean winner = board.winner(row, column, currentPlayer.getNumber());
+		if (!winner) {
+			return board.draw();
+		} else {
+			return winner;
 		}
-		throw new ColumnFullException();
 	}
 
 	public Color getCurrentPlayerColor() {
@@ -44,9 +39,5 @@ public class Game {
 		} else {
 			this.currentPlayer = this.player1;
 		}
-	}
-
-	private boolean winner() {
-		return false;
 	}
 }

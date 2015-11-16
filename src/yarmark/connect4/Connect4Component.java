@@ -28,6 +28,5 @@ public class Connect4Component extends JComponent {
 
 	public void setColor(Color color) {
 		this.color = color;
-		// repaint();
 	}
 }

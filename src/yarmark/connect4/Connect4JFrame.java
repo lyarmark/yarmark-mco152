@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Connect4JFrame extends JFrame implements ActionListener {
 
@@ -59,8 +60,6 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 		// getRows and getColumns return count from 0
 		// need to increment to have correct size array
-		int row = layout.getRows();
-		int col = layout.getColumns();
 
 		// rows is 7, columns is 6. we want [6][7]
 		components = new Connect4Component[layout.getRows() - 1][layout.getColumns() + 1];
@@ -71,8 +70,6 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				add(components[i][j]);
 			}
 		}
-
-		game.playGame();
 
 		getContentPane().setBackground(Color.yellow);
 	}
@@ -85,11 +82,16 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 				components[location][0].setColor(game.getCurrentPlayerColor());
 				components[location][0].repaint();
-				game.setCurrentPlayer();
+				if (!game.gameOver(location, 0)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+
+				}
 
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
 
 		} else if (e.getSource() == button2) {
@@ -98,23 +100,31 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 				components[location][1].setColor(game.getCurrentPlayerColor());
 				components[location][1].repaint();
-				game.setCurrentPlayer();
+				if (!game.gameOver(location, 1)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+				}
 
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
+
 		} else if (e.getSource() == button3) {
 			try {
 				int location = game.insertPiece(2);
 
 				components[location][2].setColor(game.getCurrentPlayerColor());
 				components[location][2].repaint();
-				game.setCurrentPlayer();
-
+				if (!game.gameOver(location, 2)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
 
 		} else if (e.getSource() == button4) {
@@ -123,11 +133,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 				components[location][3].setColor(game.getCurrentPlayerColor());
 				components[location][3].repaint();
-				game.setCurrentPlayer();
-
+				if (!game.gameOver(location, 3)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
 
 		} else if (e.getSource() == button5) {
@@ -136,11 +149,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 				components[location][4].setColor(game.getCurrentPlayerColor());
 				components[location][4].repaint();
-				game.setCurrentPlayer();
-
+				if (!game.gameOver(location, 4)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
 
 		} else if (e.getSource() == button6) {
@@ -149,11 +165,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 				components[location][5].setColor(game.getCurrentPlayerColor());
 				components[location][5].repaint();
-				game.setCurrentPlayer();
-
+				if (!game.gameOver(location, 5)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
 
 		} else if (e.getSource() == button7) {
@@ -162,11 +181,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 				components[location][6].setColor(game.getCurrentPlayerColor());
 				components[location][6].repaint();
-				game.setCurrentPlayer();
-
+				if (!game.gameOver(location, 6)) {
+					game.setCurrentPlayer();
+				} else {
+					JOptionPane.showMessageDialog(null, "player has won");
+					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
-
 			}
 		}
 	}

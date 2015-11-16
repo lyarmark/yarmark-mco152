@@ -2,7 +2,6 @@ package yarmark.ups;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -11,9 +10,11 @@ import java.util.Set;
 public class UPSDatabase {
 
 	private HashMap<Package, Location> map;
+	private HashMap<Location, Set<Package>> map2;
 
 	public UPSDatabase() {
 		this.map = new HashMap<Package, Location>();
+		this.map2 = new HashMap<Location, Set<Package>>();
 	}
 
 	/**
@@ -21,13 +22,22 @@ public class UPSDatabase {
 	 */
 	public void addPackageToLocation(Location location, Package pkg) {
 		map.put(pkg, location);
+		if (map2.containsKey(location)) {
+			map2.get(location).add(pkg);
+		} else {
+			map2.put(location, new HashSet<Package>());
+			map2.get(location).add(pkg);
+		}
 	}
 
 	/**
 	 * Update a Package's Location.
 	 */
 	public void updatePackageLocation(Package pkg, Location location) {
+		Location old = map.get(pkg);
+		map2.get(old).remove(pkg);
 		this.addPackageToLocation(location, pkg);
+
 	}
 
 	/**
@@ -37,14 +47,12 @@ public class UPSDatabase {
 	 */
 	public Set<Package> getPackages(Location location) {
 		HashSet<Package> set = new HashSet<Package>();
-			
-		for (Entry<Package, Location> s: map.entrySet()) {
-			if (s.getValue().equals(location)) {
-				set.add(s.getKey());
-			}
-		}
+		if (map2.get(location) == null) {
 			return set;
+		} else {
+			return map2.get(location);
 		}
+	}
 
 	/**
 	 * @return the Location of a Package or null if the Package doesn't exist.
