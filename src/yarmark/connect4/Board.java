@@ -24,7 +24,7 @@ public class Board {
 		// check column if there are at least 4 pieces in the column
 		if (row < board.length - 3) {
 			int inARow = 0;
-			for (int r = row; r >= 0; r++) {
+			for (int r = row; r < board.length; r++) {
 				if (board[r][column] == player) {
 					inARow++;
 					if (inARow == 4) {
