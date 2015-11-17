@@ -75,6 +75,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		Object[] options = { "Play Again", "EXIT" };
 		if (e.getSource() == button1) {
 			try {
 
@@ -85,9 +86,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 0)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 
 			} catch (ColumnFullException e1) {
@@ -103,8 +109,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 1)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 
 			} catch (ColumnFullException e1) {
@@ -120,8 +132,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 2)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
@@ -136,8 +154,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 3)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
@@ -152,8 +176,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 4)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
@@ -168,8 +198,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 5)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
@@ -184,8 +220,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 6)) {
 					game.setCurrentPlayer();
 				} else {
-					JOptionPane.showMessageDialog(null, "player has won");
-					System.out.println(game.getCurrentPlayerColor().toString() + " has won.");
+					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+					if (choice == 0) {
+						game = new Game();
+					} else if (choice == 1) {
+						this.dispose();
+					}
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());

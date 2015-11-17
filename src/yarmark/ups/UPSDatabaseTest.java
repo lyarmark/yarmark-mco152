@@ -81,7 +81,7 @@ public class UPSDatabaseTest {
 	public void testGetLocationReturnsNull() {
 		UPSDatabase ups = new UPSDatabase();
 		Package pkg = new Package("123456");
-		Assert.assertEquals(null, ups.getLocation(pkg));
+		Assert.assertNull(ups.getLocation(pkg));
 
 	}
 

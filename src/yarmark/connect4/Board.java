@@ -21,15 +21,18 @@ public class Board {
 	public boolean winner(int row, int column, int player) {
 		// HOW TO RETURN ALL THE WINNING COMBONATIONS
 
-		// check column if there are at least 4 pieces in the column
+		// check column
+		// if there are at least 4 pieces in the column
 		if (row < board.length - 3) {
-			int inARow = 0;
-			for (int r = row; r < board.length; r++) {
+			int inARow = 1;
+			for (int r = row + 1; r < board.length; r++) {
 				if (board[r][column] == player) {
 					inARow++;
 					if (inARow == 4) {
 						return true;
 					}
+				} else {
+					break;
 				}
 			}
 		}
@@ -49,9 +52,9 @@ public class Board {
 			end = column + 3;
 		}
 
-		int inARow = 0;
+		int inARow = 1;
 
-		for (int col = column; col <= end; col++) {
+		for (int col = column + 1; col <= end; col++) {
 			if (board[row][col] == player) {
 				inARow++;
 				if (inARow == 4) {
@@ -61,7 +64,7 @@ public class Board {
 				break;
 			}
 		}
-		for (int col = column; col < start; col--) {
+		for (int col = column - 1; col >= start; col--) {
 			if (board[row][col] == player) {
 				inARow++;
 				if (inARow == 4) {
@@ -71,6 +74,57 @@ public class Board {
 				break;
 			}
 		}
+
+		// check diagonal left to right
+		inARow = 1;
+		int endR = 5;
+		int startR = 0;
+		int endC = 6;
+		int startC = 0;
+
+		for (int r = row + 1, c = column + 1; r <= endR && c <= endC; r++, c++) {
+			if (board[r][c] == player) {
+				inARow++;
+				if (inARow == 4) {
+					return true;
+				}
+			} else {
+				break;
+			}
+		}
+		for (int r = row - 1, c = column - 1; r >= startR && c >= startC; r--, c--) {
+			if (board[r][c] == player) {
+				inARow++;
+				if (inARow == 4) {
+					return true;
+				}
+			} else {
+				break;
+			}
+		}
+
+		// check diagonal right to left
+		for (int r = row + 1, c = column - 1; r <= endR && c >= startC; r++, c--) {
+			if (board[r][c] == player) {
+				inARow++;
+				if (inARow == 4) {
+					return true;
+				}
+			} else {
+				break;
+			}
+		}
+		for (int r = row - 1, c = column + 1; r >= startR && c <= endC; r--, c++) {
+			if (board[r][c] == player) {
+				inARow++;
+				if (inARow == 4) {
+					return true;
+				}
+			} else {
+				break;
+			}
+		}
+
 		return false;
 	}
 
