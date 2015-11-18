@@ -77,10 +77,30 @@ public class Board {
 
 		// check diagonal left to right
 		inARow = 1;
-		int endR = 5;
-		int startR = 0;
-		int endC = 6;
-		int startC = 0;
+		int startR, endR, startC, endC;
+		if (column - 3 <= 0) {
+			startC = 0;
+		} else {
+			startC = column - 3;
+		}
+
+		if (column + 3 >= board[row].length - 1) {
+			endC = board[row].length - 1;
+		} else {
+			endC = column + 3;
+		}
+
+		if (row - 3 < 0) {
+			startR = 0;
+		} else {
+			startR = row - 3;
+		}
+
+		if (row + 3 > board.length - 1) {
+			endR = board.length - 1;
+		} else {
+			endR = row + 3;
+		}
 
 		for (int r = row + 1, c = column + 1; r <= endR && c <= endC; r++, c++) {
 			if (board[r][c] == player) {
@@ -104,6 +124,7 @@ public class Board {
 		}
 
 		// check diagonal right to left
+		inARow = 1;
 		for (int r = row + 1, c = column - 1; r <= endR && c >= startC; r++, c--) {
 			if (board[r][c] == player) {
 				inARow++;

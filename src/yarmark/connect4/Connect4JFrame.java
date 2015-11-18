@@ -11,16 +11,8 @@ import javax.swing.JOptionPane;
 
 public class Connect4JFrame extends JFrame implements ActionListener {
 
-	private JButton button1;
-	private JButton button2;
-	private JButton button3;
-	private JButton button4;
-	private JButton button5;
-	private JButton button6;
-	private JButton button7;
-
 	Game game;
-
+	JButton[] buttons;
 	Connect4Component[][] components;
 
 	public Connect4JFrame() {
@@ -30,53 +22,57 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 		// parameters start from 0. 8 rows, 7 columns
 		GridLayout layout = new GridLayout(7, 6);
-
 		setLayout(layout);
 
-		this.button1 = new JButton("Column 1");
-		this.button2 = new JButton("Column 2");
-		this.button3 = new JButton("Column 3");
-		this.button4 = new JButton("Column 4");
-		this.button5 = new JButton("Column 5");
-		this.button6 = new JButton("Column 6");
-		this.button7 = new JButton("Column 7");
-
-		add(button1);
-		button1.addActionListener(this);
-		add(button2);
-		button2.addActionListener(this);
-		add(button3);
-		button3.addActionListener(this);
-		add(button4);
-		button4.addActionListener(this);
-		add(button5);
-		button5.addActionListener(this);
-		add(button6);
-		button6.addActionListener(this);
-		add(button7);
-		button7.addActionListener(this);
-
 		game = new Game();
+		buttons = new JButton[layout.getColumns() + 1];
 
 		// getRows and getColumns return count from 0
 		// need to increment to have correct size array
-
 		// rows is 7, columns is 6. we want [6][7]
 		components = new Connect4Component[layout.getRows() - 1][layout.getColumns() + 1];
 
+		this.fillArray(); // add buttons and Connect4Components to JFrame
+
+		getContentPane().setBackground(Color.yellow);
+	}
+
+	private void fillArray() {
+		// ad buttons
+		for (int i = 0; i < buttons.length; i++) {
+			buttons[i] = new JButton("Column " + (i + 1));
+			add(buttons[i]);
+			buttons[i].addActionListener(this);
+		}
+		// add Connect4Components
 		for (int i = 0; i < components.length; i++) {
 			for (int j = 0; j < components[i].length; j++) {
 				components[i][j] = new Connect4Component(Color.white);
 				add(components[i][j]);
 			}
 		}
+	}
 
-		getContentPane().setBackground(Color.yellow);
+	private void choice() {
+		Object[] options = { "Play Again", "EXIT" };
+		int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+		if (choice == 0) {
+			game = new Game();
+
+			this.getContentPane().removeAll();
+			this.fillArray();
+			this.getContentPane().revalidate();
+			this.getContentPane().repaint();
+
+		} else if (choice == 1) {
+			this.dispose();
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		Object[] options = { "Play Again", "EXIT" };
-		if (e.getSource() == button1) {
+		if (e.getSource() == buttons[0]) {
 			try {
 
 				int location = game.insertPiece(0);
@@ -86,21 +82,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 0)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
 			}
 
-		} else if (e.getSource() == button2) {
+		} else if (e.getSource() == buttons[1]) {
 			try {
 				int location = game.insertPiece(1);
 
@@ -109,21 +98,14 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 1)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
 			}
 
-		} else if (e.getSource() == button3) {
+		} else if (e.getSource() == buttons[2]) {
 			try {
 				int location = game.insertPiece(2);
 
@@ -132,20 +114,13 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 2)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
 			}
 
-		} else if (e.getSource() == button4) {
+		} else if (e.getSource() == buttons[3]) {
 			try {
 				int location = game.insertPiece(3);
 
@@ -154,20 +129,13 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 3)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
 			}
 
-		} else if (e.getSource() == button5) {
+		} else if (e.getSource() == buttons[4]) {
 			try {
 				int location = game.insertPiece(4);
 
@@ -176,20 +144,13 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 4)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
 			}
 
-		} else if (e.getSource() == button6) {
+		} else if (e.getSource() == buttons[5]) {
 			try {
 				int location = game.insertPiece(5);
 
@@ -198,20 +159,13 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 5)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
 			}
 
-		} else if (e.getSource() == button7) {
+		} else if (e.getSource() == buttons[6]) {
 			try {
 				int location = game.insertPiece(6);
 
@@ -220,14 +174,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				if (!game.gameOver(location, 6)) {
 					game.setCurrentPlayer();
 				} else {
-					int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-					if (choice == 0) {
-						game = new Game();
-					} else if (choice == 1) {
-						this.dispose();
-					}
+					this.choice();
 				}
 			} catch (ColumnFullException e1) {
 				System.out.println(e1.toString());
