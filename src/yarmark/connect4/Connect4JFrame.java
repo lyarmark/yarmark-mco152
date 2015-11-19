@@ -57,7 +57,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 	private void choice() {
 		Object[] options = { "Play Again", "EXIT" };
-		int choice = JOptionPane.showOptionDialog(null, "You won!", "Game Over", JOptionPane.YES_NO_OPTION,
+		int choice = JOptionPane.showOptionDialog(null, "Game Over!", "Game Over", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
 		if (choice == 0) {
