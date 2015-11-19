@@ -23,7 +23,7 @@ public class Connect4Component extends JComponent {
 		super.paint(g);
 
 		g.setColor(this.color);
-		g.fillOval(0, 0, 80, 80);
+		g.fillOval(0, 0, 95, 95);
 	}
 
 	public void setColor(Color color) {

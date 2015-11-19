@@ -17,8 +17,9 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 	public Connect4JFrame() {
 		setTitle("Connect 4");
-		setSize(800, 600);
+		setSize(700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 
 		// parameters start from 0. 8 rows, 7 columns
 		GridLayout layout = new GridLayout(7, 6);
@@ -41,6 +42,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 		// ad buttons
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton("Column " + (i + 1));
+			buttons[i].setBackground(game.getCurrentPlayerColor());
 			add(buttons[i]);
 			buttons[i].addActionListener(this);
 		}
@@ -55,7 +57,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 
 	private void choice() {
 		Object[] options = { "Play Again", "EXIT" };
-		int choice = JOptionPane.showOptionDialog(null, "Player has won.", "Game Over", JOptionPane.YES_NO_OPTION,
+		int choice = JOptionPane.showOptionDialog(null, "You won!", "Game Over", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
 		if (choice == 0) {
@@ -71,6 +73,12 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 		}
 	}
 
+	private void setButtonColor() {
+		for (int i = 0; i < buttons.length; i++) {
+			buttons[i].setBackground(game.getCurrentPlayerColor());
+		}
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttons[0]) {
 			try {
@@ -81,6 +89,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][0].repaint();
 				if (!game.gameOver(location, 0)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}
@@ -97,6 +106,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][1].repaint();
 				if (!game.gameOver(location, 1)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}
@@ -113,6 +123,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][2].repaint();
 				if (!game.gameOver(location, 2)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}
@@ -128,6 +139,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][3].repaint();
 				if (!game.gameOver(location, 3)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}
@@ -143,6 +155,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][4].repaint();
 				if (!game.gameOver(location, 4)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}
@@ -158,6 +171,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][5].repaint();
 				if (!game.gameOver(location, 5)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}
@@ -173,6 +187,7 @@ public class Connect4JFrame extends JFrame implements ActionListener {
 				components[location][6].repaint();
 				if (!game.gameOver(location, 6)) {
 					game.setCurrentPlayer();
+					setButtonColor();
 				} else {
 					this.choice();
 				}

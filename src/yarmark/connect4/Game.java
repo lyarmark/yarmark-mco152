@@ -10,8 +10,8 @@ public class Game {
 	private Board board;
 
 	public Game() {
-		this.player1 = new Player(Color.red, 1);
-		this.player2 = new Player(Color.black, 2);
+		this.player1 = new Player(Color.green, 1);
+		this.player2 = new Player(Color.pink, 2);
 		this.currentPlayer = this.player1;
 		this.board = new Board(6, 7);
 	}
