@@ -54,6 +54,7 @@ public class Board {
 
 		int inARow = 1;
 
+		// check spaces to the right of move
 		for (int col = column + 1; col <= end; col++) {
 			if (board[row][col] == player) {
 				inARow++;
@@ -64,6 +65,7 @@ public class Board {
 				break;
 			}
 		}
+		// check spaces to the left of move
 		for (int col = column - 1; col >= start; col--) {
 			if (board[row][col] == player) {
 				inARow++;
@@ -102,6 +104,7 @@ public class Board {
 			endR = row + 3;
 		}
 
+		//check diagonal to right, below move
 		for (int r = row + 1, c = column + 1; r <= endR && c <= endC; r++, c++) {
 			if (board[r][c] == player) {
 				inARow++;
@@ -112,6 +115,7 @@ public class Board {
 				break;
 			}
 		}
+		//check diagonal to left, above move
 		for (int r = row - 1, c = column - 1; r >= startR && c >= startC; r--, c--) {
 			if (board[r][c] == player) {
 				inARow++;
@@ -124,7 +128,8 @@ public class Board {
 		}
 
 		// check diagonal right to left
-		inARow = 1;
+		inARow = 1;	//reset inARow
+		//check diagonal to left, below move
 		for (int r = row + 1, c = column - 1; r <= endR && c >= startC; r++, c--) {
 			if (board[r][c] == player) {
 				inARow++;
@@ -135,6 +140,7 @@ public class Board {
 				break;
 			}
 		}
+		//check diagonal to right, above move
 		for (int r = row - 1, c = column + 1; r >= startR && c <= endC; r--, c++) {
 			if (board[r][c] == player) {
 				inARow++;
