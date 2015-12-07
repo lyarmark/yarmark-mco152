@@ -8,7 +8,12 @@ public class CurrentWeather {
 		return weather[i].getDescription();
 	}
 
+	public String getIcon(int i) {
+		return weather[i].getIcon();
+	}
+
 	public String getTemperature() {
 		return main.getTemperature();
 	}
+
 }

@@ -26,6 +26,7 @@ public class WeatherJFrame extends JFrame {
 				try {
 					weatherPanel = new WeatherPanel(choicePanel.getZipcode());
 					getContentPane().remove(choicePanel);
+					getContentPane().revalidate();
 					getContentPane().add(weatherPanel);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
