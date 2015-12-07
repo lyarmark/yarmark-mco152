@@ -2,18 +2,16 @@ package yarmark.weather;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import yarmark.ufo.UFOSightingList;
-
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 public class WeatherConnection {
 
-	/*
-	 * currentweather object contains weather array and main object
-	 */
+	public CurrentWeather currentWeather;
 
 	public WeatherConnection(String zip) throws IOException {
 
@@ -27,13 +25,16 @@ public class WeatherConnection {
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
 		InputStream in = connection.getInputStream();
-		
+		JsonReader reader = new JsonReader(new InputStreamReader(in));
 		Gson gson = new Gson();
 
-		CurrentWeather currentWeather = gson.toJson();
+		this.currentWeather = gson.fromJson(reader, CurrentWeather.class);
 
 		in.close();
 
-		
+	}
+
+	public CurrentWeather getCurrentWeather() {
+		return currentWeather;
 	}
 }
