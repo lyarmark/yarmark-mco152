@@ -1,5 +1,6 @@
 package yarmark.weather;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class WeatherJFrame extends JFrame {
 
 	public WeatherJFrame() {
 		setTitle("Weather");
-		setSize(400, 300);
+		setSize(200, 150);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.choicePanel = new ZipChoicePanel();
