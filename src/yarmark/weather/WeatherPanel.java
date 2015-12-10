@@ -53,4 +53,9 @@ public class WeatherPanel extends JPanel {
 		add(reset);
 
 	}
+	
+	public JButton getReset(){
+		return this.reset;
+	}
+	
 }

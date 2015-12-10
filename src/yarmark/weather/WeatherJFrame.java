@@ -1,13 +1,12 @@
 package yarmark.weather;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 
-public class WeatherJFrame extends JFrame {
+public class WeatherJFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	ZipChoicePanel choicePanel;
@@ -19,23 +18,34 @@ public class WeatherJFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.choicePanel = new ZipChoicePanel();
-
-		choicePanel.getEnter().addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					weatherPanel = new WeatherPanel(choicePanel.getZipcode());
-					getContentPane().remove(choicePanel);
-					getContentPane().revalidate();
-					getContentPane().add(weatherPanel);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+		choicePanel.getEnter().addActionListener(this);
 
 		getContentPane().add(choicePanel);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == choicePanel.getEnter()) {
+			try {
+				weatherPanel = new WeatherPanel(choicePanel.getZipcode());
+				weatherPanel.getReset().addActionListener(this);
+				
+				getContentPane().remove(choicePanel);
+				getContentPane().revalidate();
+				getContentPane().add(weatherPanel);
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+		if (e.getSource() == weatherPanel.getReset()) {
+			this.choicePanel = new ZipChoicePanel();
+			this.choicePanel.getEnter().addActionListener(this);
+			
+			getContentPane().remove(weatherPanel);
+			getContentPane().revalidate();
+			getContentPane().add(choicePanel);
+		}
 	}
 }
