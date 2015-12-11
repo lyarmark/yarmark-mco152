@@ -34,4 +34,7 @@ public class WeatherConnection {
 
 	}
 
+	public CurrentWeather gettCurrentWeather() {
+		return this.currentWeather;
+	}
 }

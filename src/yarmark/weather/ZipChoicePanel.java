@@ -1,10 +1,8 @@
 package yarmark.weather;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.GridLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +24,7 @@ public class ZipChoicePanel extends JPanel {
 		this.enter = new JButton("Enter");
 
 		directions.setOpaque(true);
+		directions.setBackground(Color.white);
 		directions.setForeground(Color.blue);
 		enter.setBackground(Color.white);
 		enter.setForeground(Color.blue);

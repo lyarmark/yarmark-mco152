@@ -14,7 +14,7 @@ public class WeatherJFrame extends JFrame implements ActionListener {
 
 	public WeatherJFrame() {
 		setTitle("Weather");
-		setSize(200, 150);
+		setSize(250, 175);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.choicePanel = new ZipChoicePanel();
@@ -28,21 +28,21 @@ public class WeatherJFrame extends JFrame implements ActionListener {
 			try {
 				weatherPanel = new WeatherPanel(choicePanel.getZipcode());
 				weatherPanel.getReset().addActionListener(this);
-				
+
 				getContentPane().remove(choicePanel);
 				getContentPane().revalidate();
 				getContentPane().add(weatherPanel);
-				
+
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 
-		if (e.getSource() == weatherPanel.getReset()) {
+		else if (e.getSource() == weatherPanel.getReset()) {
 			this.choicePanel = new ZipChoicePanel();
 			this.choicePanel.getEnter().addActionListener(this);
-			
+
 			getContentPane().remove(weatherPanel);
 			getContentPane().revalidate();
 			getContentPane().add(choicePanel);
