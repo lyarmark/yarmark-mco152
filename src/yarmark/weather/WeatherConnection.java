@@ -34,7 +34,4 @@ public class WeatherConnection {
 
 	}
 
-	public CurrentWeather getCurrentWeather() {
-		return currentWeather;
-	}
 }

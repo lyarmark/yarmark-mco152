@@ -34,4 +34,8 @@ public class Notes {
 	//tabs in modern browsers run on separate threads
 	//a process is a program- chrome uses processes, not threads
 	//difference between processes and threads- a process can have multiple threads
+	
+	//any internet connection (ex: weather using json online) is considred a long running operation
+	//can't do anything else while it's running
+	//button stays depressed because it's still running
 }

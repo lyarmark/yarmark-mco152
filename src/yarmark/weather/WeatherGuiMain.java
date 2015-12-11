@@ -6,4 +6,9 @@ public class WeatherGuiMain {
 		WeatherJFrame frame = new WeatherJFrame();
 		frame.setVisible(true);
 	}
+	//optional:
+	/*
+	 * 16 day forecast
+	 * use API from login
+	 */
 }
