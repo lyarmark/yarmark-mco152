@@ -1,6 +1,7 @@
 package yarmark.weatherForecast;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.IOException;
 
@@ -17,6 +18,9 @@ public class WeatherJPanel extends JPanel {
 
 	public WeatherJPanel(String city, int day) throws IOException {
 		setLayout(new GridLayout(3, 0));
+		this.description = new JLabel();
+		this.temperature = new JLabel();
+		this.image = new JLabel();
 
 		InternetThread thread = new InternetThread(city, day, description, temperature, image);
 		thread.start();
@@ -24,12 +28,17 @@ public class WeatherJPanel extends JPanel {
 		description.setForeground(Color.blue);
 		temperature.setForeground(Color.blue);
 
+		description.setFont(new Font("Papyrus", Font.ITALIC, 16));
+		temperature.setFont(new Font("Rockwell", Font.BOLD, 20));
+
 		description.setHorizontalAlignment(SwingConstants.CENTER);
 		temperature.setHorizontalAlignment(SwingConstants.CENTER);
+		image.setHorizontalAlignment(SwingConstants.CENTER);
 
 		add(description);
 		add(temperature);
 		add(image);
 
+		this.setBackground(Color.PINK);
 	}
 }

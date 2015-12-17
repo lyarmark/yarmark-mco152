@@ -1,6 +1,7 @@
 package yarmark.weatherForecast;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -30,6 +31,11 @@ public class CityChoicePanel extends JPanel {
 		enter.setForeground(Color.blue);
 
 		directions.setHorizontalAlignment(SwingConstants.CENTER);
+		city.setHorizontalAlignment(SwingConstants.CENTER);
+
+		directions.setFont(new Font("Broadway", Font.BOLD, 48));
+		city.setFont(new Font("Elephant", Font.BOLD, 48));
+		enter.setFont(new Font("Broadway", Font.BOLD, 48));
 
 		add(directions);
 		add(city);

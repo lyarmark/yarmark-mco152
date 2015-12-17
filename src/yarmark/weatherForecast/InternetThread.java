@@ -23,7 +23,11 @@ public class InternetThread extends Thread {
 	private JLabel image;
 
 	public InternetThread(String city, int day, JLabel desc, JLabel temp, JLabel image) throws IOException {
-		this.city = city;
+		if (city.matches(".*\\s+.*")) {
+			this.city = city.replaceAll("\\s+", "");
+		} else {
+			this.city = city;
+		}
 		this.day = day;
 		this.description = desc;
 		this.temperature = temp;
@@ -45,15 +49,20 @@ public class InternetThread extends Thread {
 
 			url = new URL("http://openweathermap.org/img/w/" + currentWeather.getWeather(day).getIcon() + ".png");
 
-			BufferedImage bufferedImage = ImageIO.read(url);
+			BufferedImage bufferedImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
+			bufferedImage = ImageIO.read(url);
+			ImageIcon icon = new ImageIcon(bufferedImage);
 
 			this.description.setText(currentWeather.getWeather(day).getDescription());
-			this.temperature.setText(currentWeather.getTemp(day).getDay());
-			this.image = new JLabel(new ImageIcon(bufferedImage));
+			this.temperature.setText(currentWeather.getTemp(day).getDay() + " °F");
+			this.image.setIcon(icon);
 
 			in.close();
 		} catch (IOException e) {
 
+		} catch (NullPointerException e) {
+			// no city/invalid city entered
+			this.temperature.setText("Invalid city");
 		}
 
 	}

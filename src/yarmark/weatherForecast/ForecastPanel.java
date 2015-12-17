@@ -2,6 +2,7 @@ package yarmark.weatherForecast;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -21,8 +22,11 @@ public class ForecastPanel extends JPanel {
 		this.reset.setForeground(Color.white);
 		this.reset.setBackground(Color.blue);
 
+		reset.setFont(new Font("Broadway", Font.BOLD, 36));
+
 		add(forecastGrid, BorderLayout.CENTER);
 		add(reset, BorderLayout.SOUTH);
+
 	}
 
 	public JButton getReset() {
