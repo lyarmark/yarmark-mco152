@@ -10,11 +10,11 @@ public class WeatherJFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	CityChoicePanel choicePanel;
-	WeatherPanel weatherPanel;
+	ForecastPanel forecastPanel;
 
 	public WeatherJFrame() {
-		setTitle("Weather");
-		setSize(250, 175);
+		setTitle("Weather Forecast");
+		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.choicePanel = new CityChoicePanel();
@@ -25,25 +25,25 @@ public class WeatherJFrame extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == choicePanel.getEnter()) {
+
 			try {
-				weatherPanel = new WeatherPanel(choicePanel.getCity());
-				weatherPanel.getReset().addActionListener(this);
-
-				getContentPane().remove(choicePanel);
-				getContentPane().revalidate();
-				getContentPane().add(weatherPanel);
-
+				forecastPanel = new ForecastPanel(choicePanel.getCity());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			forecastPanel.getReset().addActionListener(this);
+
+			getContentPane().remove(choicePanel);
+			getContentPane().revalidate();
+			getContentPane().add(forecastPanel);
 		}
 
-		else if (e.getSource() == weatherPanel.getReset()) {
+		else if (e.getSource() == forecastPanel.getReset()) {
 			this.choicePanel = new CityChoicePanel();
 			this.choicePanel.getEnter().addActionListener(this);
 
-			getContentPane().remove(weatherPanel);
+			getContentPane().remove(forecastPanel);
 			getContentPane().revalidate();
 			getContentPane().add(choicePanel);
 		}

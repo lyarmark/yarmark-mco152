@@ -8,18 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class WeatherPanel extends JPanel {
+public class WeatherJPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JLabel description;
 	private JLabel temperature;
 	private JLabel image;
 
-	public WeatherPanel(String city, int day) throws IOException {
+	public WeatherJPanel(String city, int day) throws IOException {
 		setLayout(new GridLayout(3, 0));
-		this.description = new JLabel();
-		this.temperature = new JLabel();
-		this.image = new JLabel();
 
 		InternetThread thread = new InternetThread(city, day, description, temperature, image);
 		thread.start();
@@ -33,5 +30,6 @@ public class WeatherPanel extends JPanel {
 		add(description);
 		add(temperature);
 		add(image);
+
 	}
 }

@@ -5,11 +5,11 @@ public class List {
 	private Weather[] weather;
 	private Temp temp;
 
-	public Weather getWeather(int i) {
-		return weather[i];
+	public Weather getWeather() {
+		return weather[0];
 	}
 
-	public Temp getTemp(int i) {
+	public Temp getTemp() {
 		return temp;
 	}
 }
