@@ -18,15 +18,16 @@ public class WeatherPanel extends JPanel {
 	private JLabel image;
 	private JButton reset;
 
-	public WeatherPanel(String zipCode) throws IOException {
+	public WeatherPanel(String city) throws IOException {
 		setLayout(new GridLayout(4, 0));
 
-		InternetThread connection = new InternetThread(zipCode);
-		connection.run();
+		InternetThread connection = new InternetThread(city);
+		connection.start();
 
 		CurrentWeather currentWeather = connection.getCurrentWeather();
 
-		String d = currentWeather.getWeather(0).getDescription();// get description
+		String d = currentWeather.getWeather(0).getDescription();// get
+																	// description
 		String t = currentWeather.getTemp(0).getDay();// get temperature
 
 		this.description = new JLabel("Description: " + d);

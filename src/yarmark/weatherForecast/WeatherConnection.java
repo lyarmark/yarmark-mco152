@@ -19,7 +19,7 @@ public class WeatherConnection {
 
 		builder.append("http://api.openweathermap.org/data/2.5/forecast/daily?q=");
 		builder.append(city);
-		builder.append("&mode=json&units=imperial&cnt=7&appid=2de143494c0b295cca9337e1e96b00e0");
+		builder.append("&mode=json&units=imperial&cnt=16&appid=2de143494c0b295cca9337e1e96b00e0");
 
 		URL url = new URL(builder.toString());
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -34,7 +34,7 @@ public class WeatherConnection {
 
 	}
 
-	public CurrentWeather gettCurrentWeather() {
+	public CurrentWeather getCurrentWeather() {
 		return this.currentWeather;
 	}
 }
