@@ -20,23 +20,18 @@ public class WeatherPanel extends JPanel {
 
 	public WeatherPanel(String zipCode) throws IOException {
 		setLayout(new GridLayout(4, 0));
-
-		InternetThread connection = new InternetThread(zipCode);
-		connection.run();
-
-		CurrentWeather currentWeather = connection.getCurrentWeather();
-
-		String d = currentWeather.getDescription(0);// get description
-		String t = currentWeather.getTemperature();// get temperature
-
-		this.description = new JLabel("Description: " + d);
-		this.temperature = new JLabel("Temperature: " + t + "° F");
+		this.description = new JLabel();
+		this.temperature = new JLabel( );
+		this.image = new JLabel();
 		this.reset = new JButton("RESET");
 
+		InternetThread connection = new InternetThread(zipCode, description, temperature, image);
+		connection.start();
+
+		
 		// cannot add an ImageIcon to a JPanel
 		// put the image in a label and it becomes a regular component
-		this.image = new JLabel(new ImageIcon(connection.getImage()));
-
+		
 		description.setForeground(Color.blue);
 		temperature.setForeground(Color.blue);
 		reset.setBackground(Color.blue);
@@ -44,6 +39,7 @@ public class WeatherPanel extends JPanel {
 
 		description.setHorizontalAlignment(SwingConstants.CENTER);
 		temperature.setHorizontalAlignment(SwingConstants.CENTER);
+		image.setHorizontalAlignment(SwingConstants.CENTER);
 
 		add(description);
 		add(temperature);
