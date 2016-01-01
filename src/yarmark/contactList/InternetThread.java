@@ -7,11 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Collections;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.ListModel;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -20,9 +18,9 @@ public class InternetThread extends Thread {
 
 	private JList<Contact> jList;
 	private Contact[] contacts;
-	private ListModel<Contact> model;
+	private DefaultListModel<Contact> model;
 
-	public InternetThread(JList<Contact> jList, ListModel<Contact> model) throws IOException {
+	public InternetThread(JList<Contact> jList, DefaultListModel<Contact> model) throws IOException {
 		this.jList = jList;
 		this.model = model;
 	}
@@ -44,9 +42,9 @@ public class InternetThread extends Thread {
 			Arrays.sort(contacts);
 
 			for (Contact c : contacts) {
-				model.addElement();
+				model.addElement(c);
 			}
-			
+
 			this.jList.setModel(model);
 
 		} catch (MalformedURLException e) {
@@ -57,5 +55,4 @@ public class InternetThread extends Thread {
 			e.printStackTrace();
 		}
 	}
-
 }

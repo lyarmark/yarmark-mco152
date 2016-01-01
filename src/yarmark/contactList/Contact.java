@@ -1,6 +1,6 @@
 package yarmark.contactList;
 
-public class Contact implements Comparable<Contact>{
+public class Contact implements Comparable<Contact> {
 
 	private String name;
 
@@ -15,7 +15,8 @@ public class Contact implements Comparable<Contact>{
 	@Override
 	public int compareTo(Contact other) {
 		String[] thisName = this.toString().split(" ");
-		String[] otherName = this.toString().split(" ");
+		String[] otherName = other.toString().split(" ");
+
 		if (thisName[thisName.length - 1].length() == 1) {
 			return thisName[thisName.length - 2].compareTo(otherName[otherName.length - 1]);
 		} else if (otherName[otherName.length - 1].length() == 1) {

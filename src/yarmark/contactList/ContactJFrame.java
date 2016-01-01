@@ -6,14 +6,13 @@ import java.io.IOException;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
 public class ContactJFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	JList<Contact> jList;
-	ListModel<Contact> model;
+	DefaultListModel<Contact> model;
 
 	public ContactJFrame() {
 		setTitle("Contacts");
