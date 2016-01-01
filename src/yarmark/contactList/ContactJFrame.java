@@ -3,14 +3,17 @@ package yarmark.contactList;
 import java.awt.BorderLayout;
 import java.io.IOException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
 public class ContactJFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	JList<String> jList;
+	JList<Contact> jList;
+	ListModel<Contact> model;
 
 	public ContactJFrame() {
 		setTitle("Contacts");
@@ -19,12 +22,12 @@ public class ContactJFrame extends JFrame {
 
 		setLayout(new BorderLayout());
 
-		// estimate size to intialize
-		jList = new JList<String>();
+		jList = new JList<Contact>();
+		model = new DefaultListModel<Contact>();
 
 		InternetThread thread;
 		try {
-			thread = new InternetThread(jList);
+			thread = new InternetThread(jList, model);
 			thread.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -34,7 +37,7 @@ public class ContactJFrame extends JFrame {
 		jList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		jList.setLayoutOrientation(JList.VERTICAL_WRAP);
 		jList.setVisibleRowCount(-1);
-		
+
 		add(jList, BorderLayout.CENTER);
 		getContentPane();
 	}

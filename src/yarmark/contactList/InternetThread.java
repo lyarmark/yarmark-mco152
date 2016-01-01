@@ -7,19 +7,24 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collections;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
 public class InternetThread extends Thread {
 
-	private JList<String> jList;
+	private JList<Contact> jList;
 	private Contact[] contacts;
+	private ListModel<Contact> model;
 
-	public InternetThread(JList<String> jList) throws IOException {
+	public InternetThread(JList<Contact> jList, ListModel<Contact> model) throws IOException {
 		this.jList = jList;
+		this.model = model;
 	}
 
 	public void run() {
@@ -36,34 +41,13 @@ public class InternetThread extends Thread {
 			Gson gson = new Gson();
 
 			contacts = gson.fromJson(reader, Contact[].class);
+			Arrays.sort(contacts);
 
-			StringBuilder buildName = null;
-
-			String[] contactNames = new String[contacts.length];
-
-			for (int i = 0; i < contactNames.length; i++) {
-
-				buildName = new StringBuilder();
-				String[] tempName = contacts[i].getName().split(" ");
-
-				for (int j = tempName.length - 1; j >= 0; j--) {
-					if (tempName[j].length() == 1) {
-						//for middle initials and suffix title such as III, Esq. etc
-						buildName.append(tempName[j - 1]);
-						buildName.append(" ");
-						buildName.append(tempName[j - 2]);
-						buildName.append(" ");
-						buildName.append(tempName[j]);						
-						break;
-					}
-					buildName.append(tempName[j]);
-					buildName.append(" ");
-				}
-				contactNames[i] = buildName.toString();
-
+			for (Contact c : contacts) {
+				model.addElement();
 			}
-			Arrays.sort(contactNames);
-			jList.setListData(contactNames);
+			
+			this.jList.setModel(model);
 
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
