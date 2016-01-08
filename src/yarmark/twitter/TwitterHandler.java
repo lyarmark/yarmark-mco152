@@ -20,7 +20,7 @@ public class TwitterHandler extends AbstractHandler {
 		response.setContentType("charset=utf-8");
 
 		// status message tells browser what kind of response this will be
-		// 200 is the 'OK' code
+		// 200 is the 'OK' http code
 		response.setStatus(HttpServletResponse.SC_OK);
 
 		// need to tell the request that you've handled the message
