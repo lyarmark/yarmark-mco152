@@ -7,4 +7,8 @@ public class Response {
 	public Result[] getResult() {
 		return result;
 	}
+
+	public Capture[] getCapture() {
+		return capture;
+	}
 }

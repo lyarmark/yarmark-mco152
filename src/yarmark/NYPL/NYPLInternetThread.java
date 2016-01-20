@@ -17,15 +17,14 @@ public class NYPLInternetThread extends Thread {
 	private NYPLJFrame mainFrame;
 	private String searchItem;
 	private DefaultListModel<String> model;
-	private Result[] results;
 	private JList<String> resultsJList;
 
-	public NYPLInternetThread(NYPLJFrame mainFrame, String searchItem, JList<String> resultsJlist,
+	public NYPLInternetThread(NYPLJFrame mainFrame, String searchItem, JList<String> results,
 			DefaultListModel<String> model) {
 		this.mainFrame = mainFrame;
 		this.searchItem = searchItem;
 		this.model = model;
-		this.resultsJList = resultsJList;
+		this.resultsJList = results;
 	}
 
 	public void run() {
@@ -42,9 +41,14 @@ public class NYPLInternetThread extends Thread {
 			MainAPIholder searchResults = gson.fromJson(reader, MainAPIholder.class);
 
 			Result[] results = searchResults.getAPI().getResponse().getResult();
-
+			mainFrame.setResult(results);
 			for (Result i : results) {
-				model.addElement(i.getTitle());
+				if (i.getTitle().length() > 30) {
+					String title = i.getTitle().substring(0, 29);
+					model.addElement(title);
+				} else {
+					model.addElement(i.getTitle());
+				}
 			}
 			resultsJList.setModel(model);
 
@@ -54,5 +58,4 @@ public class NYPLInternetThread extends Thread {
 		}
 
 	}
-
 }

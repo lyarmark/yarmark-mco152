@@ -1,14 +1,10 @@
 package yarmark.NYPL;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -30,6 +26,11 @@ public class NYPLJFrame extends JFrame implements ActionListener {
 	private JTextField searchField;
 	private JButton searchButton;
 
+	private JPanel previousNext;
+	private JButton previous;
+	private JButton next;
+	private JLabel number;
+
 	private JPanel resultsPanel;
 	private JList<String> resultsJList;
 	private DefaultListModel<String> model;
@@ -41,7 +42,7 @@ public class NYPLJFrame extends JFrame implements ActionListener {
 
 	public NYPLJFrame() {
 		setTitle("New York Public Library");
-		setSize(800, 800);
+		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Container container = getContentPane();
@@ -56,22 +57,35 @@ public class NYPLJFrame extends JFrame implements ActionListener {
 			@Override
 			public void valueChanged(ListSelectionEvent le) {
 				int index = resultsJList.getSelectedIndex();
-				// TODO Auto-generated method stub
 				String temp = result[index].getAPIItemURL();
-				ImageInternetThread imageThread = new ImageInternetThread(result[index].getAPIItemURL(), icon);
+				ImageInternetThread imageThread = new ImageInternetThread(result[index].getAPIItemURL(), icon,
+						previous, next, number);
 				imageThread.start();
 			}
 		});
+		getRootPane().setDefaultButton(searchButton);
 		getContentPane();
 	}
 
 	public void setLayout() {
+		this.previousNext = new JPanel();
+		this.previous = new JButton("Previous");
+		this.next = new JButton("Next");
+		this.number = new JLabel();
+		this.previousNext.add(previous, BorderLayout.SOUTH);
+		this.previousNext.add(number, BorderLayout.CENTER);
+		this.previousNext.add(next, BorderLayout.SOUTH);
+		this.previous.setEnabled(false);
+		this.next.setEnabled(false);
+
 		this.searchPanel = new JPanel();
 		this.searchField = new JTextField();
 		this.searchButton = new JButton("Search");
-		this.searchField.setPreferredSize(new Dimension(500, 30));
-		this.searchPanel.add(searchField);
-		this.searchPanel.add(searchButton);
+		this.searchField.setPreferredSize(new Dimension(700, 30));
+		this.searchPanel.setLayout(new BorderLayout());
+		this.searchPanel.add(searchField, BorderLayout.WEST);
+		this.searchPanel.add(searchButton, BorderLayout.EAST);
+		this.searchPanel.add(this.previousNext, BorderLayout.SOUTH);
 
 		this.resultsPanel = new JPanel();
 		this.resultsPanel.setPreferredSize(new Dimension(200, 800));
@@ -79,6 +93,7 @@ public class NYPLJFrame extends JFrame implements ActionListener {
 		this.resultsJList = new JList<String>();
 		this.resultsJList.setModel(model);
 		this.resultsPanel.add(resultsJList);
+		this.resultsPanel.setVisible(false);
 
 		this.resultsJList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		this.resultsJList.setVisibleRowCount(-1);
@@ -89,17 +104,38 @@ public class NYPLJFrame extends JFrame implements ActionListener {
 		JScrollPane pane = new JScrollPane(picturePanel);
 		pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 		add(searchPanel, BorderLayout.NORTH);
 		add(resultsPanel, BorderLayout.WEST);
 		add(pane, BorderLayout.CENTER);
 
 	}
 
+	public void setResultsJList(JList<String> resultsJList) {
+		this.resultsJList = resultsJList;
+	}
+
+	public void setResult(Result[] result) {
+		this.result = result;
+	}
+
+	public JPanel getPreviousNext() {
+		return previousNext;
+	}
+
+	public JButton getPrevious() {
+		return previous;
+	}
+
+	public JButton getNext() {
+		return next;
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == searchButton) {
+			resultsPanel.setVisible(true);
 			NYPLInternetThread thread = new NYPLInternetThread(this, searchField.getText(), resultsJList, model);
 			thread.start();
 		}
 	}
-
 }
